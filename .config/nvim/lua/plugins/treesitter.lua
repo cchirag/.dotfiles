@@ -1,16 +1,17 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })()
-    end,
-	config = function () 
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-          ensure_installed = {"go","gomod","gosum","lua"  },
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true },  
-        })
-    end
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	event = "VeryLazy",
+	config = function()
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = {
+				"html", "css", "javascript", "typescript",
+				"tsx", "go", "rust", "markdown",
+				"yaml", "python", "graphql"
+			},
+			highlight = { enable = true },
+			indent = { enable = true },
+			autotag = { enable = true }, -- Enable auto-closing tags (requires 'windwp/nvim-ts-autotag')
+		})
+	end,
 }
