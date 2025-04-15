@@ -58,3 +58,5 @@ require('nvim-ts-autotag').setup({
 })
 
 require('oil').setup({})
+
+require("ibl").setup()
